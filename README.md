@@ -287,3 +287,12 @@ A Django response object containing:
 - `details`: a string indicating the status of the like, either `LIKE`, `ALREADY_MATCHED`, `NEW_MATCH` or `SAME_MATCH`
 - `group_match`: a string indicating whether the match was between groups: `NEITHER`, `BOTH`, `LIKED` or `CURRENT`
 - `match_data`: the match serialization in case a new match was created, otherwise this field will not be present.
+
+# Summary of limitations
+- The Toogether name and brand are registered; you cannot use the name, designs, or colors.
+- You can use the app for any learning purpose as long as it runs in your local environment. In other words, you cannot deploy our code.
+- You can use the code for learning purposes and references. For example, if you are creating a similar app, you can use our code to learn how to build features like a swipe function and get inspiration from our implementation.
+- You cannot sell this code in any form.
+- You cannot conduct business with this code in any form
+
+More information can be found in the LICENSE file in the root of the project. If you know of someone who is not respecting these limitations, please contact the owner at damianstonedev@gmail.com. The open-source world thrives on our respectful behavior ❤️
