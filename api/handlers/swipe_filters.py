@@ -1,7 +1,19 @@
 from django.utils.timezone import now
 from datetime import date
 
+# age_range(data, min_age, max_age)：根据给定的年龄范围过滤数据集中的个人资料。
 
+# data: 要过滤的个人资料数据集。
+# min_age: 年龄范围的最小值。
+# max_age: 年龄范围的最大值。
+# filter_profiles(current_profile, profiles)：根据用户的偏好、年龄、性别和屏蔽列表过滤符合条件的个人资料。
+
+# current_profile: 当前用户的个人资料对象。
+# profiles: 要过滤的个人资料数据集。
+# filter_groups(current_profile, groups)：根据用户的偏好、年龄、性别和群组成员情况过滤符合条件的群组。
+
+# current_profile: 当前用户的个人资料对象。
+# groups: 要过滤的群组数据集。
 def age_range(data, min_age, max_age):
     current = now().date()
     min_date = date(current.year - min_age, current.month, current.day)

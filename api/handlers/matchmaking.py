@@ -20,7 +20,7 @@ CURRENT = "CURRENT"
 """
     Given a current_profile and a match object, returns the profile of the match
     that is not the current_profile.
-    
+
     @param current_profile: the profile object of the current user
     @param match: the match object containing the two profiles
     @return: the profile object of the other user in the match
@@ -35,7 +35,7 @@ def get_matched_profile(current_profile, match):
 
 """
     Given two profile IDs, checks if they have already matched.
-    
+
     @param profile1_id: the ID of the first profile
     @param profile2_id: the ID of the second profile
     @return: True if the two profiles have already matched, False otherwise
@@ -60,7 +60,7 @@ def check_two_profiles_have_match(profile1_id, profile2_id):
 """
     Given a profile ID and a group object, checks if the profile has a match with any member
     of the group.
-    
+
     @param profile_id: the ID of the profile
     @param group: the group object to check for matches
     @return: True if the profile has a match with any member of the group, False otherwise
@@ -83,7 +83,7 @@ def check_profile_group_has_match(profile_id, group):
 
 """
     Given two group objects, checks if they have any matches in common.
-    
+
     @param group1: the first group object
     @param group2: the second group object
     @return: True if the two groups have matches in common, False otherwise
@@ -102,7 +102,7 @@ def check_two_group_has_match(group1, group2):
 
 """
     Given two profile IDs, retrieves the match object between the two profiles.
-    
+
     @param profile1_id: the ID of the first profile
     @param profile2_id: the ID of the second profile
     @return: the match object between the two profiles, or False if no match exists
@@ -246,13 +246,13 @@ def like_one_to_group(request, current_profile, liked_group):
 """
     When the current user is being a member of a group and give a like to
     a single profile
-    
-    In this case if the single profile already has given a like to the group, 
+
+    In this case if the single profile already has given a like to the group,
     this like should be stored in the many-to-many property of the group, then
     the first member of the group on give a like to the single profile is who get the match with
-    
+
     if many members have liked a single profile, check the like_one_to_group() function
-    
+
     @param request - the request object
     @param current_profile - the profile of the user making the like
     @param current_group - the group from which the like is made

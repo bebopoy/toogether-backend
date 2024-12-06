@@ -49,7 +49,10 @@ router.register(
     basename="group-chat",
 )
 
+
+
 urlpatterns = [
+
     # !!Internal endpoints - profiles
     path("internal/profiles/", internal_profile.list_profiles, name="list_profiles"),
     path(

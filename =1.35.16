@@ -1,0 +1,10 @@
+Looking in indexes: https://pypi.mirrors.ustc.edu.cn/simple/
+Collecting botocore
+  Downloading https://mirrors.ustc.edu.cn/pypi/packages/6f/17/4c6fc28f657a555430ff3aa445a47da17c6894163dfd8a03bb191d333b51/botocore-1.35.65-py3-none-any.whl (12.9 MB)
+     --------------------------------------- 12.9/12.9 MB 10.3 MB/s eta 0:00:00
+Requirement already satisfied: jmespath<2.0.0,>=0.7.1 in c:\users\nxt03\anaconda3\envs\toogether\lib\site-packages (from botocore) (0.10.0)
+Requirement already satisfied: python-dateutil<3.0.0,>=2.1 in c:\users\nxt03\anaconda3\envs\toogether\lib\site-packages (from botocore) (2.8.2)
+Requirement already satisfied: urllib3<1.27,>=1.25.4 in c:\users\nxt03\anaconda3\envs\toogether\lib\site-packages (from botocore) (1.26.12)
+Requirement already satisfied: six>=1.5 in c:\users\nxt03\anaconda3\envs\toogether\lib\site-packages (from python-dateutil<3.0.0,>=2.1->botocore) (1.14.0)
+Installing collected packages: botocore
+Successfully installed botocore-1.35.65

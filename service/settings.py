@@ -29,7 +29,7 @@ SECURE_CROSS_ORIGIN_OPENER_POLICY = None
 # os environ come from the env variables of aws
 if "PRODUCTION" in os.environ:
 
-    DEBUG = False
+    DEBUG = True
 
     SECRET_KEY = os.environ["DJANGO_SECRET_KEY"]
 
@@ -42,8 +42,9 @@ if "PRODUCTION" in os.environ:
         "https://mobile-api.toogether.app",
     ]
     CORS_ALLOWED_ORIGINS = [
-        "toogether.app" "https://mobile-api.toogether.app",
-    ]
+    "https://toogether.app",
+    "https://mobile-api.toogether.app"
+]
 
     SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
     SECURE_SSL_REDIRECT = True
@@ -194,11 +195,16 @@ else:
     DATABASES = {
         "default": {
             "ENGINE": "django.contrib.gis.db.backends.postgis",
-            "NAME": os.environ.get("LOCAL_DB_NAME"),
-            "USER": os.environ.get("LOCAL_DB_USER"),
-            "PASSWORD": os.environ.get("LOCAL_DB_PASSWORD"),
-            "HOST": os.environ.get("LOCAL_DB_HOST"),
-            "PORT": os.environ.get("LOCAL_DB_PORT"),
+            "NAME": "postgres",
+            "USER": "postgres",
+            "PASSWORD": "164871",
+            "HOST": "localhost",
+            "PORT": "5432",
+            # "NAME": os.environ.get("LOCAL_DB_NAME"),
+            # "USER": os.environ.get("LOCAL_DB_USER"),
+            # "PASSWORD": os.environ.get("LOCAL_DB_PASSWORD"),
+            # "HOST": os.environ.get("LOCAL_DB_HOST"),
+            # "PORT": os.environ.get("LOCAL_DB_PORT"),
         }
     }
 

@@ -13,13 +13,21 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.urls import path, include
 
+from django.urls import path, include
+from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
+from django.http import HttpResponse
+
+def home(request):
+    return HttpResponse("Welcome to the backend API!")  # 或者返回任何其他内容
 
 urlpatterns = [
-    path("api/v1/", include("api.urls")),
+
+    path("", home, name="home"),  # 为根路径添加视图   dang手动添加测试
+    path("api/", include("api.urls")),
+    path('admin/', admin.site.urls),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
