@@ -25,8 +25,9 @@ def home(request):
 
 urlpatterns = [
 
-    path("", home, name="home"),  # 为根路径添加视图   dang手动添加测试
-    path("api/", include("api.urls")),
+    # path("", home, name="api.urls"),  # 为根路径添加视图   dang手动添加测试
+    # path("api/", include("api.urls")),
+     path('', include('api.urls')),
     path('admin/', admin.site.urls),
 ]
 

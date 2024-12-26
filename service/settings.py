@@ -69,13 +69,15 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+
     "rest_framework",
     "corsheaders",
     "storages",
     "rest_framework_simplejwt",
     "rest_framework_simplejwt.token_blacklist",
     "django.contrib.gis",
-    "api.apps.ApiConfig",
+    # "api.apps.ApiConfig",
+    "api"
 ]
 
 REST_FRAMEWORK = {
@@ -84,6 +86,7 @@ REST_FRAMEWORK = {
     ],
     "DEFAULT_AUTHENTICATION_CLASSES": [
         "rest_framework_simplejwt.authentication.JWTAuthentication",
+        'rest_framework.authentication.SessionAuthentication',
     ],
     "DEFAULT_PAGINATION_CLASS": "service.core.pagination.CustomNumberPagination",
 }
@@ -150,22 +153,25 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    'service.request_response_logging.RequestResponseLoggingMiddleware',
 ]
 
 
 ROOT_URLCONF = "service.urls"
 
+# Templates
 TEMPLATES = [
     {
-        "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
-        "APP_DIRS": True,
-        "OPTIONS": {
-            "context_processors": [
-                "django.template.context_processors.debug",
-                "django.template.context_processors.request",
-                "django.contrib.auth.context_processors.auth",
-                "django.contrib.messages.context_processors.messages",
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],  # 全局模板目录
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                # 默认上下文处理器...
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
             ],
         },
     },
@@ -244,21 +250,21 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = "/static/"
-MEDIA_URL = "/images/"
+# MEDIA_URL = "/images/"
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
-
-if "PRODUCTION" in os.environ:
-    STATIC_ROOT = os.path.join(BASE_DIR, "static")
-    DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
-    STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
-    AWS_ACCESS_KEY_ID = os.environ["AWS_ACCESS_KEY_ID"]
-    AWS_SECRET_ACCESS_KEY = os.environ["AWS_SECRET_ACCESS_KEY"]
-    AWS_STORAGE_BUCKET_NAME = "toogether-images"
-    AWS_QUERYSTRING_AUTH = False
-    AWS_S3_FILE_OVERWRITE = True
-else:
-    STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
-    MEDIA_ROOT = "static/images"
+# if "PRODUCTION" in os.environ:
+#     STATIC_ROOT = os.path.join(BASE_DIR, "static")
+#     DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
+#     STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+#     AWS_ACCESS_KEY_ID = os.environ["AWS_ACCESS_KEY_ID"]
+#     AWS_SECRET_ACCESS_KEY = os.environ["AWS_SECRET_ACCESS_KEY"]
+#     AWS_STORAGE_BUCKET_NAME = "toogether-images"
+#     AWS_QUERYSTRING_AUTH = False
+#     AWS_S3_FILE_OVERWRITE = True
+# else:
+#     STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
+#     MEDIA_ROOT = "static/images"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
@@ -271,3 +277,22 @@ EMAIL_PORT = os.environ["EMAIL_PORT"]
 EMAIL_HOST_USER = os.environ["EMAIL_HOST_USER"]
 EMAIL_HOST_PASSWORD = os.environ["EMAIL_HOST_PASSWORD"]
 EMAIL_USE_TLS = os.environ["EMAIL_USE_TLS"]
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': 'request_response.log',  # 修改为你的日志文件路径
+        },
+    },
+    'loggers': {
+        'myapp': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': False,
+        },
+    },
+}

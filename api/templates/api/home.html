@@ -1,0 +1,9 @@
+<!-- api/templates/api/home.html -->
+{% extends 'api/base.html' %}
+
+{% block title %}首页{% endblock %}
+
+{% block content %}
+<h2>欢迎来到首页, {{ user_name }}!</h2>
+<p>这是一个受保护的页面，只有登录用户可以访问。</p>
+{% endblock %}

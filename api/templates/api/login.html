@@ -1,0 +1,14 @@
+<!-- api/templates/api/login.html -->
+{% extends 'api/base.html' %}
+
+{% block title %}登录{% endblock %}
+
+{% block content %}
+<h2>登录</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">登录</button>
+</form>
+<p>没有账号？<a href="{% url 'register' %}">注册</a></p>
+{% endblock %}
